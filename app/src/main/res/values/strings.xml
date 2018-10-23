@@ -3,4 +3,5 @@
     <string name="scan_qr">Scan QR</string>
     <string name="input_nomor_berkas">Input Nomor Berkas</string>
     <string name="search">Cari</string>
+    <string name="info">Informasi</string>
 </resources>

@@ -22,8 +22,11 @@ class MainActivity : AppCompatActivity() {
 
         tv_title.text = getString(R.string.app_name) +" v${version}"
 
-        btn_scan.setOnClickListener { onScan() }
-        btn_input.setOnClickListener { onInput() }
+        card_scan.setOnClickListener { onScan() }
+        card_input.setOnClickListener { onInput() }
+
+//        btn_scan.setOnClickListener { onScan() }
+//        btn_input.setOnClickListener { onInput() }
     }
 
     private fun onScan(){
