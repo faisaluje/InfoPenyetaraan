@@ -1,14 +1,13 @@
 package com.faisaluje.infopenyetaraan
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
+import com.faisaluje.infopenyetaraan.profile.ProfileActivity
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,9 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         card_scan.setOnClickListener { onScan() }
         card_input.setOnClickListener { onInput() }
-
-//        btn_scan.setOnClickListener { onScan() }
-//        btn_input.setOnClickListener { onInput() }
     }
 
     private fun onScan(){
@@ -41,7 +37,11 @@ class MainActivity : AppCompatActivity() {
         MaterialDialog(this)
                 .title(text = "No. Berkas")
                 .input(inputType = InputType.TYPE_CLASS_NUMBER) { _, text ->
-                    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.putExtra("NOBERKAS", text.toString())
+
+                    startActivity(intent)
                 }
                 .positiveButton(R.string.search)
                 .show()

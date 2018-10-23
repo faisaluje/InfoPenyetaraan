@@ -1,11 +1,13 @@
 package com.faisaluje.infopenyetaraan
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onDismiss
 import com.afollestad.materialdialogs.input.input
+import com.faisaluje.infopenyetaraan.profile.ProfileActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
@@ -30,12 +32,17 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result?) {
-        MaterialDialog(this)
+        /*MaterialDialog(this)
                 .title(text = "No. Berkas")
                 .message(text = rawResult?.text)
                 .onDismiss {
                     onBackPressed()
                 }
-                .show()
+                .show()*/
+
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra("NOBERKAS", rawResult?.text)
+
+        startActivity(intent)
     }
 }

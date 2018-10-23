@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="rv_profile_list" type="id" />
+    <item name="tv_judul" type="id" />
+    <item name="tv_value" type="id" />
+</resources>
