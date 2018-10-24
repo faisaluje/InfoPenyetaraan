@@ -1,7 +1,6 @@
 package com.faisaluje.infopenyetaraan.profile
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -39,7 +38,7 @@ class ProfileAdapter(private val profileList: List<Profile>): RecyclerView.Adapt
             cardView {
                 lparams(width = matchParent, height = wrapContent) {
                     gravity = Gravity.CENTER
-                    margin = dip(4)
+                    margin = dip(5)
                     radius = 4f
                 }
                 isClickable = true

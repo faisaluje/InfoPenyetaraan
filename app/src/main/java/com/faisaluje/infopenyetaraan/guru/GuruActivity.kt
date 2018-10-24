@@ -1,15 +1,16 @@
-package com.faisaluje.infopenyetaraan.profile
+package com.faisaluje.infopenyetaraan.guru
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.faisaluje.infopenyetaraan.R
 import com.faisaluje.infopenyetaraan.adapter.ViewPagerAdapter
-import com.google.android.material.tabs.TabLayout
+import com.faisaluje.infopenyetaraan.berkas.BerkasFragment
+import com.faisaluje.infopenyetaraan.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_profile.*
 
-class ProfileActivity : AppCompatActivity() {
+class GuruActivity : AppCompatActivity() {
     private lateinit var noBerkas: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +23,9 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if(!noBerkas.isBlank()) supportActionBar?.title = noBerkas
 
+        progress_bar_profile.visibility = View.VISIBLE
+        viewpager_profile.visibility = View.GONE
+
         setupViewPager(viewpager_profile)
 
         tab_profile.setupWithViewPager(viewpager_profile)
@@ -30,7 +34,7 @@ class ProfileActivity : AppCompatActivity() {
     private fun setupViewPager(viewPager: ViewPager){
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFrag(ProfileFragment.newFragment(noBerkas), "PROFIL")
-        adapter.addFrag(ProfileFragment.newFragment(noBerkas), "BERKAS")
+        adapter.addFrag(BerkasFragment(), "BERKAS")
         viewPager.adapter = adapter
     }
 }

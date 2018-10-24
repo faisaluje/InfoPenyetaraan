@@ -7,7 +7,7 @@ import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.input
-import com.faisaluje.infopenyetaraan.profile.ProfileActivity
+import com.faisaluje.infopenyetaraan.guru.GuruActivity
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 .title(text = "No. Berkas")
                 .input(inputType = InputType.TYPE_CLASS_NUMBER) { _, text ->
 //                    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, GuruActivity::class.java)
                     intent.putExtra("NOBERKAS", text.toString())
 
                     startActivity(intent)

@@ -23,7 +23,7 @@
         <activity
             android:name=".ScannerActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".profile.ProfileActivity"
+        <activity android:name=".guru.GuruActivity"
             android:parentActivityName=".MainActivity" />
     </application>
 
