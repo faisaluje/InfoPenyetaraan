@@ -35,11 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun onInput(){
         MaterialDialog(this)
-                .title(text = "No. Berkas")
+                .title(text = "No. Berkas / NUPTK")
                 .input(inputType = InputType.TYPE_CLASS_NUMBER) { _, text ->
 //                    Toast.makeText(this, text, Toast.LENGTH_LONG).show()
                     val intent = Intent(this, GuruActivity::class.java)
-                    intent.putExtra("NOBERKAS", text.toString())
+                    intent.putExtra("NOMOR", text.toString())
 
                     startActivity(intent)
                 }

@@ -14,21 +14,21 @@ import com.faisaluje.infopenyetaraan.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_guru.*
 
 class GuruActivity : AppCompatActivity(), GuruView {
-    private lateinit var noBerkas: String
+    private lateinit var nomor: String
     private lateinit var presenter: GuruPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guru)
 
-        noBerkas = intent.getStringExtra("NOBERKAS")
+        nomor = intent.getStringExtra("NOMOR")
 
         setSupportActionBar(toolbar_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if(!noBerkas.isBlank()) supportActionBar?.title = noBerkas else finish()
+        if(!nomor.isBlank()) supportActionBar?.title = nomor else finish()
 
         presenter = GuruPresenter(this, RetrofitFactory)
-        presenter.getData(noBerkas)
+        presenter.getData(nomor)
     }
 
     override fun showError(msg: String) {

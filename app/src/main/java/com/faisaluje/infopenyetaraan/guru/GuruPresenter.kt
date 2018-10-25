@@ -9,12 +9,12 @@ import kotlinx.coroutines.experimental.launch
 class GuruPresenter(private val view: GuruView,
                     private val retrofitFactory: RetrofitFactory){
 
-    fun getData(no: String){
+    fun getData(nomor: String){
         view.showLoading()
 
         val service = retrofitFactory.makeRetrofitService()
         GlobalScope.launch(Dispatchers.Main){
-            val request = service.getData(no)
+            val request = service.getData(nomor)
             val response = request.await()
             if(response.isSuccessful){
                 val data = response.body()

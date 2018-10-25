@@ -28,16 +28,8 @@ class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(rawResult: Result?) {
-        /*MaterialDialog(this)
-                .title(text = "No. Berkas")
-                .message(text = rawResult?.text)
-                .onDismiss {
-                    onBackPressed()
-                }
-                .show()*/
-
         val intent = Intent(this, GuruActivity::class.java)
-        intent.putExtra("NOBERKAS", rawResult?.text)
+        intent.putExtra("NOMOR", rawResult?.text)
 
         startActivity(intent)
     }

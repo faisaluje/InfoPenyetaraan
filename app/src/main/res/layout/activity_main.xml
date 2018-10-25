@@ -61,10 +61,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="@string/input_nomor_berkas"
+            android:text="@string/input"
             android:drawableTop="@drawable/icons8_ball_point_pen_50"/>
     </androidx.cardview.widget.CardView>
 
