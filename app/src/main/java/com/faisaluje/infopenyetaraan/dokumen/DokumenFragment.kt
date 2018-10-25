@@ -16,8 +16,10 @@ import com.faisaluje.infopenyetaraan.guru.GuruActivity
 import com.faisaluje.infopenyetaraan.guru.GuruPresenter
 import com.faisaluje.infopenyetaraan.model.Dokumen
 import com.faisaluje.infopenyetaraan.model.Guru
+import com.faisaluje.infopenyetaraan.penolakan.PenolakanDialogFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
@@ -45,7 +47,10 @@ class DokumenFragment: Fragment(), AnkoComponent<Context>, DokumenView{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = DokumenAdapter(dokumen)
+        adapter = DokumenAdapter(dokumen){
+            val dialog = PenolakanDialogFragment.newDialogFragment(it.penolakan)
+            dialog.show(childFragmentManager, "Penolakan")
+        }
         dokumenList.adapter = adapter
 
         presenter = DokumenPresenter(this, guru)

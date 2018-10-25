@@ -6,7 +6,6 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +13,9 @@ import com.faisaluje.infopenyetaraan.R
 import com.faisaluje.infopenyetaraan.model.Dokumen
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class DokumenAdapter(private val dokumen: List<Dokumen>): RecyclerView.Adapter<DokumenAdapter.ViewHolder>(){
+class DokumenAdapter(private val dokumen: List<Dokumen>, private val listener: (Dokumen) -> Unit): RecyclerView.Adapter<DokumenAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(DokumenUI().createView(AnkoContext.create(parent.context, parent)))
     }
@@ -23,14 +23,14 @@ class DokumenAdapter(private val dokumen: List<Dokumen>): RecyclerView.Adapter<D
     override fun getItemCount() = dokumen.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(dokumen[position])
+        holder.bindItem(dokumen[position], listener)
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val namaDokumen: TextView = itemView.find(R.id.tv_dokumen)
         private val status: TextView = itemView.find(R.id.tv_status)
 
-        fun bindItem(dokumen: Dokumen){
+        fun bindItem(dokumen: Dokumen, listener: (Dokumen) -> Unit){
             namaDokumen.text = dokumen.jenisDokumen
             status.text = dokumen.verified
             if(dokumen.verified.equals("Valid")){
@@ -40,6 +40,8 @@ class DokumenAdapter(private val dokumen: List<Dokumen>): RecyclerView.Adapter<D
             }else if(dokumen.verified.equals("Fatal")){
                 status.textColor = Color.rgb(132, 0, 0)
             }
+
+            itemView.onClick { listener(dokumen) }
         }
     }
 
