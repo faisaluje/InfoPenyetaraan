@@ -1,5 +1,28 @@
 package com.faisaluje.infopenyetaraan.guru
 
-class GuruPresenter{
+import com.faisaluje.infopenyetaraan.api.RetrofitFactory
+import kotlinx.coroutines.experimental.Dispatchers
+import kotlinx.coroutines.experimental.GlobalScope
+import kotlinx.coroutines.experimental.android.Main
+import kotlinx.coroutines.experimental.launch
 
+class GuruPresenter(private val view: GuruView,
+                    private val retrofitFactory: RetrofitFactory){
+
+    fun getData(no: String){
+        view.showLoading()
+
+        val service = retrofitFactory.makeRetrofitService()
+        GlobalScope.launch(Dispatchers.Main){
+            val request = service.getData(no)
+            val response = request.await()
+            if(response.isSuccessful){
+                val data = response.body()
+                view.showData(data!!.guru)
+                view.hideLoading()
+            }else{
+                view.showError("Error ${response.message()}")
+            }
+        }
+    }
 }

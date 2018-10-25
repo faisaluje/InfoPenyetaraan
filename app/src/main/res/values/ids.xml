@@ -3,4 +3,6 @@
     <item name="rv_profile_list" type="id" />
     <item name="tv_judul" type="id" />
     <item name="tv_value" type="id" />
+    <item name="tv_no_berkas" type="id" />
+    <item name="tv_nuptk" type="id" />
 </resources>

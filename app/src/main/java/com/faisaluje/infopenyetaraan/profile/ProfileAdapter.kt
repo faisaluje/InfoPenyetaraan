@@ -28,8 +28,8 @@ class ProfileAdapter(private val profileList: List<Profile>): RecyclerView.Adapt
         private val value = itemView.find<TextView>(R.id.tv_value)
 
         fun bindItem(profil: Profile){
-            title.text = profil.uraian
-            value.text = profil.data
+            title.text = profil.title
+            value.text = profil.value
         }
     }
 
