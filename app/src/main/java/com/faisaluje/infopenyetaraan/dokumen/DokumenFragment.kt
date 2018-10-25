@@ -1,4 +1,4 @@
-package com.faisaluje.infopenyetaraan.profile
+package com.faisaluje.infopenyetaraan.dokumen
 
 import android.content.Context
 import android.os.Bundle
@@ -10,31 +10,31 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.faisaluje.infopenyetaraan.MainActivity
 import com.faisaluje.infopenyetaraan.R
 import com.faisaluje.infopenyetaraan.api.RetrofitFactory
 import com.faisaluje.infopenyetaraan.guru.GuruActivity
 import com.faisaluje.infopenyetaraan.guru.GuruPresenter
+import com.faisaluje.infopenyetaraan.model.Dokumen
 import com.faisaluje.infopenyetaraan.model.Guru
-import com.faisaluje.infopenyetaraan.model.Profile
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class ProfileFragment : Fragment(), AnkoComponent<Context>, ProfileView{
+class DokumenFragment: Fragment(), AnkoComponent<Context>, DokumenView{
+    private val dokumen: MutableList<Dokumen> = mutableListOf()
     private lateinit var guru: Guru
-    private val profile: MutableList<Profile> = mutableListOf()
     private lateinit var swipeRefresh: SwipeRefreshLayout
-    private lateinit var profileList: RecyclerView
-    private lateinit var adapter: ProfileAdapter
-    private lateinit var presenter: ProfilePresenter
+    private lateinit var dokumenList: RecyclerView
+    private lateinit var adapter: DokumenAdapter
+    private lateinit var presenter: DokumenPresenter
     private lateinit var guruActivity: GuruActivity
     private lateinit var guruPresenter: GuruPresenter
 
     companion object {
-        fun newFragment(guru: Guru, guruActivity: GuruActivity): ProfileFragment {
-            val fragment = ProfileFragment()
+        fun newFragment(guru: Guru, guruActivity: GuruActivity): DokumenFragment{
+            val fragment = DokumenFragment()
+
             fragment.guru = guru
             fragment.guruActivity = guruActivity
 
@@ -45,16 +45,14 @@ class ProfileFragment : Fragment(), AnkoComponent<Context>, ProfileView{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter = ProfileAdapter(profile)
-        profileList.adapter = adapter
+        adapter = DokumenAdapter(dokumen)
+        dokumenList.adapter = adapter
 
-        presenter = ProfilePresenter(this, guru)
-        presenter.getProfile()
+        presenter = DokumenPresenter(this, guru)
+        presenter.getDokumen()
 
         guruPresenter = GuruPresenter(guruActivity, RetrofitFactory)
-
         swipeRefresh.onRefresh {
-//            presenter.getProfile()
             guruPresenter.getData(guru.noBerkas!!)
         }
     }
@@ -78,7 +76,7 @@ class ProfileFragment : Fragment(), AnkoComponent<Context>, ProfileView{
                         android.R.color.holo_red_light
                 )
 
-                profileList = recyclerView {
+                dokumenList = recyclerView {
                     id = R.id.rv_profile_list
                     lparams(width = matchParent, height = wrapContent)
                     layoutManager = LinearLayoutManager(ctx)
@@ -95,9 +93,9 @@ class ProfileFragment : Fragment(), AnkoComponent<Context>, ProfileView{
         swipeRefresh.isRefreshing = true
     }
 
-    override fun showListProfile(data: List<Profile>) {
-        profile.clear()
-        profile.addAll(data)
+    override fun showListDokumen(data: List<Dokumen>) {
+        dokumen.clear()
+        dokumen.addAll(data)
         adapter.notifyDataSetChanged()
     }
 }

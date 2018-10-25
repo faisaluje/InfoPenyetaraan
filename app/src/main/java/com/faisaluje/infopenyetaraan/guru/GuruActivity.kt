@@ -8,7 +8,7 @@ import androidx.viewpager.widget.ViewPager
 import com.faisaluje.infopenyetaraan.R
 import com.faisaluje.infopenyetaraan.adapter.ViewPagerAdapter
 import com.faisaluje.infopenyetaraan.api.RetrofitFactory
-import com.faisaluje.infopenyetaraan.berkas.BerkasFragment
+import com.faisaluje.infopenyetaraan.dokumen.DokumenFragment
 import com.faisaluje.infopenyetaraan.model.Guru
 import com.faisaluje.infopenyetaraan.profile.ProfileFragment
 import kotlinx.android.synthetic.main.activity_guru.*
@@ -53,8 +53,8 @@ class GuruActivity : AppCompatActivity(), GuruView {
 
     private fun setupViewPager(viewPager: ViewPager, guru: Guru){
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFrag(ProfileFragment.newFragment(guru), "PROFIL")
-        adapter.addFrag(BerkasFragment(), "BERKAS")
+        adapter.addFrag(ProfileFragment.newFragment(guru, this), "PROFIL")
+        adapter.addFrag(DokumenFragment.newFragment(guru, this), "DOKUMEN")
         viewPager.adapter = adapter
     }
 }

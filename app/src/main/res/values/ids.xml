@@ -5,4 +5,8 @@
     <item name="tv_value" type="id" />
     <item name="tv_no_berkas" type="id" />
     <item name="tv_nuptk" type="id" />
+    <item name="rv_dokumen" type="id" />
+    <item name="tv_dokumen" type="id" />
+    <item name="tv_status" type="id" />
+    <item name="status" type="id" />
 </resources>
