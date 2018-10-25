@@ -5,15 +5,19 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.faisaluje.infopenyetaraan.model.Penolakan
 import org.jetbrains.anko.*
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 
 class PenolakanDialogFragment: DialogFragment(), AnkoComponent<Context>{
     private lateinit var penolakans: List<Penolakan>
+    private lateinit var penolakanList: RecyclerView
+    private lateinit var adapter: PenolakanAdapter
 
     companion object {
         fun newDialogFragment(penolakans: List<Penolakan>): PenolakanDialogFragment{
@@ -22,6 +26,13 @@ class PenolakanDialogFragment: DialogFragment(), AnkoComponent<Context>{
 
             return fragment
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        adapter = PenolakanAdapter(penolakans)
+        penolakanList.adapter = adapter
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -39,15 +50,13 @@ class PenolakanDialogFragment: DialogFragment(), AnkoComponent<Context>{
         linearLayout {
             lparams(width = matchParent, height = matchParent)
             orientation = LinearLayout.VERTICAL
+            topPadding = dip(16)
+            leftPadding = dip(8)
+            rightPadding = dip(8)
 
-            textView("Jenis ke 1"){
-                textSize = 14f
-                typeface = Typeface.DEFAULT_BOLD
-            }.lparams(width = wrapContent, height = wrapContent)
-
-            textView("Status : Valid"){
-
-            }.lparams(width = wrapContent, height = wrapContent)
+            penolakanList = recyclerView {
+                layoutManager = LinearLayoutManager(ctx)
+            }.lparams(width = matchParent, height = wrapContent)
         }
     }
 }

@@ -19,7 +19,6 @@ import com.faisaluje.infopenyetaraan.model.Guru
 import com.faisaluje.infopenyetaraan.penolakan.PenolakanDialogFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.support.v4.alert
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
@@ -48,8 +47,10 @@ class DokumenFragment: Fragment(), AnkoComponent<Context>, DokumenView{
         super.onActivityCreated(savedInstanceState)
 
         adapter = DokumenAdapter(dokumen){
-            val dialog = PenolakanDialogFragment.newDialogFragment(it.penolakan)
-            dialog.show(childFragmentManager, "Penolakan")
+            if(it.penolakan.isNotEmpty()){
+                val dialog = PenolakanDialogFragment.newDialogFragment(it.penolakan)
+                dialog.show(childFragmentManager, "Penolakan")
+            }
         }
         dokumenList.adapter = adapter
 

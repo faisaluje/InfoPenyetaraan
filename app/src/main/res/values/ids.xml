@@ -9,4 +9,7 @@
     <item name="tv_dokumen" type="id" />
     <item name="tv_status" type="id" />
     <item name="status" type="id" />
+    <item name="tv_penolakan" type="id" />
+    <item name="tv_alasan_penolakan" type="id" />
+    <item name="tv_strip" type="id" />
 </resources>
