@@ -18,7 +18,7 @@ class GuruPresenter(private val view: GuruView,
             val response = request.await()
             if(response.isSuccessful){
                 val data = response.body()
-                if(data?.guru?.noBerkas.isNullOrEmpty()) view.showError("Guru tidak ditemukan") else view.showData(data!!.guru)
+                if(data?.guru?.noBerkas.isNullOrEmpty()) view.showError("Riwayat tidak ditemukan") else view.showData(data!!.guru)
             }else{
                 view.showError("Error ${response.message()}")
             }

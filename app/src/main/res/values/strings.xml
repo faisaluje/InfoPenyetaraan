@@ -4,4 +4,6 @@
     <string name="input">Ketik Manual</string>
     <string name="search">Cari</string>
     <string name="info">Informasi</string>
+    <string name="riwayat">Riwayat</string>
+    <string name="riwayat_pencarian">Riwayat Pencarian</string>
 </resources>

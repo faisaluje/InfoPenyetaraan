@@ -24,12 +24,12 @@ class ProfileAdapter(private val profileList: List<Profile>): RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(profileList[position])
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        private val title = itemView.find<TextView>(R.id.tv_title)
-        private val value = itemView.find<TextView>(R.id.tv_value)
+        private val tvTitle = itemView.find<TextView>(R.id.tv_title)
+        private val tvValue = itemView.find<TextView>(R.id.tv_value)
 
         fun bindItem(profil: Profile){
-            title.text = profil.title
-            value.text = profil.value
+            tvTitle.text = profil.title
+            tvValue.text = profil.value
         }
     }
 

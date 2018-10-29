@@ -10,7 +10,7 @@ class DokumenPresenter(private val view: DokumenView,
     fun getDokumen(){
         view.showLoading()
 
-        dokumen.addAll(guru.dokumen)
+        if(guru.dokumen != null) dokumen.addAll(guru.dokumen)
 
         view.showListDokumen(dokumen)
         view.hideLoading()

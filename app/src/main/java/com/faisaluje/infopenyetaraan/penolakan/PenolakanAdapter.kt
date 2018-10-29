@@ -3,7 +3,6 @@ package com.faisaluje.infopenyetaraan.penolakan
 import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.faisaluje.infopenyetaraan.R
@@ -22,12 +21,12 @@ class PenolakanAdapter(private val penolakans: List<Penolakan>): RecyclerView.Ad
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        private val namaPenolakan: TextView = itemView.find(R.id.tv_penolakan)
-        private val alasanPenolakan: TextView = itemView.find(R.id.tv_alasan_penolakan)
+        private val tvNamaPenolakan: TextView = itemView.find(R.id.tv_penolakan)
+        private val tvAlasanPenolakan: TextView = itemView.find(R.id.tv_alasan_penolakan)
 
         fun bindItem(penolakan: Penolakan){
-            namaPenolakan.text = penolakan.jenisPenolakan
-            alasanPenolakan.text = penolakan.keterangan
+            tvNamaPenolakan.text = penolakan.jenisPenolakan
+            tvAlasanPenolakan.text = penolakan.keterangan
         }
     }
 

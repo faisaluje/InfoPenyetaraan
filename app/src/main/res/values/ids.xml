@@ -12,4 +12,8 @@
     <item name="tv_penolakan" type="id" />
     <item name="tv_alasan_penolakan" type="id" />
     <item name="tv_strip" type="id" />
+    <item name="tv_nama" type="id" />
+    <item name="nuptk" type="id" />
+    <item name="no_berkas" type="id" />
+    <item name="list_guru" type="id" />
 </resources>
