@@ -26,7 +26,8 @@
         <activity android:name=".guru.GuruActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".riwayat.RiwayatActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
     </application>
 
 </manifest>

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
         askPermission {
             startActivity(intent)
-        }.onDeclined { e -> }
+        }.onDeclined { _ -> }
     }
 
     private fun onInput(){

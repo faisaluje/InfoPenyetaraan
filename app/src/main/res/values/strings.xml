@@ -6,4 +6,5 @@
     <string name="info">Informasi</string>
     <string name="riwayat">Riwayat</string>
     <string name="riwayat_pencarian">Riwayat Pencarian</string>
+    <string name="clear_all">CLEAR ALL</string>
 </resources>

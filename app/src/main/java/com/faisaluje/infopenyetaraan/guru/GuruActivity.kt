@@ -31,6 +31,8 @@ class GuruActivity : AppCompatActivity(), GuruView {
 
         setSupportActionBar(toolbar_profile)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar_profile.setNavigationOnClickListener { finish() }
+
         if(!nomor.isBlank()) supportActionBar?.title = nomor else finish()
 
         presenter = GuruPresenter(this, RetrofitFactory)

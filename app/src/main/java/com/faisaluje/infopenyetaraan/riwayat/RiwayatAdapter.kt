@@ -11,11 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.faisaluje.infopenyetaraan.R
 import com.faisaluje.infopenyetaraan.db.Riwayat
+import com.faisaluje.infopenyetaraan.db.database
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.sdk27.coroutines.onLongClick
 
-class RiwayatAdapter(private val riwayats: List<Riwayat>, private val listener: (Riwayat) -> Unit): RecyclerView.Adapter<RiwayatAdapter.ViewHolder>(){
+class RiwayatAdapter(private val riwayats: List<Riwayat>, private val onClick: (Riwayat) -> Unit, private val onLongClick: (Riwayat) -> Unit): RecyclerView.Adapter<RiwayatAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(RiwayatUI().createView(AnkoContext.create(parent.context, parent)))
     }
@@ -23,20 +25,23 @@ class RiwayatAdapter(private val riwayats: List<Riwayat>, private val listener: 
     override fun getItemCount() = riwayats.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(riwayats[position], listener)
+        holder.bindItem(riwayats[position], onClick, onLongClick)
     }
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val tvNama: TextView = itemView.find(R.id.tv_nama)
         private val tvNuptk: TextView = itemView.find(R.id.tv_nuptk)
         private val tvNoBerkas: TextView = itemView.find(R.id.tv_no_berkas)
+        private val database = itemView.context.database
 
-        fun bindItem(riwayat: Riwayat, listener: (Riwayat) -> Unit){
+        fun bindItem(riwayat: Riwayat, onClick: (Riwayat) -> Unit, onLongClick: (Riwayat) -> Unit){
             tvNama.text = riwayat.nama
             tvNuptk.text = riwayat.nuptk
             tvNoBerkas.text = riwayat.noBerkas
 
-            itemView.onClick { listener(riwayat) }
+            itemView.onClick { onClick(riwayat) }
+
+            itemView.onLongClick { onLongClick(riwayat) }
         }
     }
 
